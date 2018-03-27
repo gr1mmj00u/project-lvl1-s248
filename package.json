@@ -1,6 +1,6 @@
 {
   "name": "gr1mmj00u-bgames",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Brain games",
   "main": "index.js",
   "bin": {
@@ -35,5 +35,8 @@
     "babel-core": "*",
     "babel-preset-env": "*",
     "babel-preset-stage-0": "*"
+  },
+  "dependencies": {
+    "readline-sync": "^1.4.9"
   }
 }
