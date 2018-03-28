@@ -1,5 +1,7 @@
 #!/usr/bin/env node
-import haveYouName from '..'
+
+import welcomeAction from '..';
+
 console.log('Welcome to the Brain Games!');
 
-haveYouName();
+welcomeAction();
