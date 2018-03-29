@@ -1,6 +1,6 @@
 {
   "name": "gr1mmj00u-bgames",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Brain games",
   "main": "index.js",
   "bin": {
