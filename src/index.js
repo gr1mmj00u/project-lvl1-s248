@@ -1,61 +1,40 @@
 import readlineSync from 'readline-sync';
-import _ from 'lodash';
 
 const DEFAULT_COUNT_STEP = 3;
-const DEFAULT_LOWER_NUMBER = 1;
-const DEFAULT_UPPER_NUMBER = 100;
 
-export const welcomeAction = () => {
-  const userName = readlineSync.question('May I have your name? ');
-  console.log(`Hello, ${userName}!`);
-  return userName;
-};
-
-const getRandomNumbers = (count = DEFAULT_COUNT_STEP) => {
-  const randomNumbersArray = [];
-  let lengthArray = count;
-
-  while (lengthArray) {
-    randomNumbersArray.push(_.random(DEFAULT_LOWER_NUMBER, DEFAULT_UPPER_NUMBER, false));
-    lengthArray -= 1;
+export default (game) => {
+  console.log('Welcome to the Brain Games!');
+  if (game.title) {
+    console.log(game.title);
   }
-  return randomNumbersArray;
-};
 
-const gameStep = (number) => {
-  console.log(`Question: ${number}`);
+  const userName = readlineSync.question('May I have your name? ');
 
-  const response = readlineSync.question('Your answer: ');
-  const correct = !(number % 2) ? 'yes' : 'no';
+  console.log(`Hello, ${userName}!`);
+
+  let step = 0;
   let result = true;
 
-  switch (response) {
-    case 'yes':
-      result = !(number % 2);
-      break;
-    case 'no':
-      result = (number % 2);
-      break;
-    default:
+  while (step < DEFAULT_COUNT_STEP) {
+    const question = game.getQuestion();
+    console.log(`Question: ${question.text}`);
+
+    const response = readlineSync.question('Your answer: ');
+
+    if (response === question.correct) {
+      console.log('Correct!');
+    } else {
+      console.log(`'${response}' is wrong answer ;(. Correct answer was '${question.correct}'.`);
       result = false;
+      break;
+    }
+
+    step += 1;
   }
 
   if (result) {
-    console.log('Correct!');
+    console.log(`Congratulations, ${userName}!`);
   } else {
-    console.log(`'${response}' is wrong answer ;(. Correct answer was '${correct}'.`);
+    console.log(`Let's try again, ${userName}!`);
   }
-  return result;
-};
-
-export const gameAction = (countNumbers = DEFAULT_COUNT_STEP) => {
-  const randomNumbers = getRandomNumbers(countNumbers);
-
-  let index = 0;
-  for (index; index < randomNumbers.length; index += 1) {
-    if (!gameStep(randomNumbers[index])) {
-      return false;
-    }
-  }
-  return true;
 };
