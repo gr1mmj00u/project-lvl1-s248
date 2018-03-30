@@ -1,10 +1,10 @@
 import _ from 'lodash';
 import createGame from '../';
 
-const DEFAULT_LOWER_NUMBER = 1;
-const DEFAULT_UPPER_NUMBER = 100;
+const defaultLowerNumber = 1;
+const defaultUpperNumber = 100;
 
-const getRandomNumber = () => _.random(DEFAULT_LOWER_NUMBER, DEFAULT_UPPER_NUMBER, false);
+const getRandomNumber = () => _.random(defaultLowerNumber, defaultUpperNumber, false);
 
 const getRandomOperation = () => {
   switch (_.random(1, 3, false)) {
