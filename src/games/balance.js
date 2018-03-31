@@ -23,14 +23,6 @@ const getBalanceNumber = (num) => {
     return whole;
   });
 
-  // for (let i = 0; i < numArr.length; i += 1) {
-  //   if (count) {
-  //     result.push(whole + 1);
-  //     count -= 1;
-  //   } else {
-  //     result.push(whole);
-  //   }
-  // }
   return result.reverse().join('');
 };
 
