@@ -12,16 +12,25 @@ const getBalanceNumber = (num) => {
   const whole = Math.trunc(sum / numArr.length);
   const rest = sum % numArr.length;
 
-  const result = [];
+  let result = [];
   let count = rest;
-  for (let i = 0; i < numArr.length; i += 1) {
+
+  result = numArr.map(() => {
     if (count) {
-      result.push(whole + 1);
       count -= 1;
-    } else {
-      result.push(whole);
+      return whole + 1;
     }
-  }
+    return whole;
+  });
+
+  // for (let i = 0; i < numArr.length; i += 1) {
+  //   if (count) {
+  //     result.push(whole + 1);
+  //     count -= 1;
+  //   } else {
+  //     result.push(whole);
+  //   }
+  // }
   return result.reverse().join('');
 };
 

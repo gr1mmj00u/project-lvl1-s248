@@ -6,15 +6,12 @@ const defaultUpperNumber = 100;
 
 const getRandomNumber = () => _.random(defaultLowerNumber, defaultUpperNumber, false);
 
-const getNod = (num1, num2) => {
-  const [larger, less] = (num1 > num2) ? [num1, num2] : [num2, num1];
-  const rest = larger % less;
-
-  if (rest === 0) {
-    return less;
+const getGcd = (num1, num2) => {
+  if (num2 === 0) {
+    return num1;
   }
 
-  return getNod(less, rest);
+  return getGcd(num2, num1 % num2);
 };
 
 export default () => {
@@ -23,7 +20,7 @@ export default () => {
     getQuestion: () => {
       const number1 = getRandomNumber();
       const number2 = getRandomNumber();
-      const nod = getNod(number1, number2);
+      const nod = getGcd(number1, number2);
 
       const object = {
         text: `${number1} ${number2}`,
